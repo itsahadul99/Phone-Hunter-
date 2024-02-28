@@ -7,7 +7,7 @@ const loadData = async (brandName = '11',isShowAll) => {
     displayCard(phones,isShowAll);
 }
 const displayCard = (phones,isShowAll) => {
-    console.log(phones);
+    // console.log(phones);
     // show all button container
     const showAllButtonContainer = document.getElementById('show-all-button-container');
     if(phones.length > 12 && !isShowAll){
@@ -36,7 +36,7 @@ const displayCard = (phones,isShowAll) => {
                     <h2 class="card-title">${phone.phone_name}</h2>
                     <p>There are many variations of passages of available, but the majority have suffered</p>
                 <div class="card-actions">
-                    <button onclick="showDetails('${phone.slug}')" class="btn btn-primary text-xs lg:text-xl">Show Details</button>
+                    <button onclick="showDetails('${phone.slug}');show_details_modal.showModal()" class="btn btn-primary text-xs lg:text-xl">Show Details</button>
                 </div>
             </div>
         </div>
@@ -67,5 +67,34 @@ const spinner = (isSpinner) => {
     }
 }
 
-
+// show details 
+const showDetails =async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    // console.log(data);
+    const phone = data.data;
+    // console.log(phone);
+    showPhoneDetails(phone);
+}
+const showPhoneDetails = (phone) => {
+    console.log(phone);
+    const showDetailsContainer = document.getElementById('show-details-container');
+    showDetailsContainer.innerHTML = `
+    <div>
+        <img src = "${phone.image}"/>
+    </div>
+    <div>
+        <h3 class="text-3xl font-bold" >${phone.name}</h3>
+        <p class = "my-1">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+        <p> <span class="text-lg font-bold">Storage:</span> ${phone?.mainFeatures?.storage}</p>
+        <p> <span class="text-lg font-bold">Display:</span> ${phone?.mainFeatures?.displaySize}</p>
+        <p> <span class="text-lg font-bold">Memory:</span> ${phone?.mainFeatures?.memory}</p>
+        <p> <span class="text-lg font-bold">Slug:</span> ${phone?.slug}</p>
+        <p> <span class="text-lg font-bold">Brand:</span> ${phone?.brand}</p>
+        <p> <span class="text-lg font-bold">GPS:</span> ${phone?.others?.GPS}</p>
+        <p> <span class="text-lg font-bold">Release Date:</span> ${phone?.releaseDate}</p>
+    </div>
+    `
+    show_details_modal.showModal();
+}
 loadData();
