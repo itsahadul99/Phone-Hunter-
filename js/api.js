@@ -42,9 +42,12 @@ const displayCard = (phones,isShowAll) => {
         </div>
         `
         phoneCardContainer.appendChild(phoneCard);
+        spinner(false);
     });
 }
 const searchField = (isShowAll) => {
+    // show the spinner
+    spinner(true);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // console.log(searchText);
@@ -54,5 +57,15 @@ const searchField = (isShowAll) => {
 const showAll = () => {
     searchField(true);
 }
-// 
+// spinner or loading icon 
+const spinner = (isSpinner) => {
+    const spinnerContainer = document.getElementById('spinner-container');
+    if(isSpinner){
+        spinnerContainer.classList.remove('hidden')
+    }else{
+        spinnerContainer.classList.add('hidden');
+    }
+}
+
+
 loadData();
