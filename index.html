@@ -47,27 +47,19 @@
             <!-- Search your phone -->
             <div class="text-center space-y-2 lg:space-y-5">
                 <h1 class="text-3xl font-semibold">Search your phone</h1>
-                <input class="w-1/2 px-5 py-2 lg:py-5 bg-[#100F0F0D] rounded-lg text-[#706F6F]" type="text"
+                <input id="search-field" class="w-1/2 px-5 py-2 lg:py-5 bg-[#100F0F0D] rounded-lg text-[#706F6F]" type="text"
                     placeholder="Search You phone">
-                <button
+                <button onclick="searchField()"
                     class=" px-5 lg:px-8 py-2 lg:py-5 bg-[#0D6EFD] rounded-lg text-xl font-bold text-white">Search</button>
             </div>
         </section>
         <section class="py-5 lg:py-10">
             <!-- phones card -->
             <div id="card-container" class="grid grid-cols-1 lg:grid-cols-4 justify-center items-center gap-5 lg:gap-10">
-                <!-- <div class="card w-96 bg-base-100 shadow-xl">
-                    <figure class="px-10 pt-10">
-                      <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                      <h2 class="card-title">Shoes!</h2>
-                      <p>If a dog chews shoes whose shoes does he choose?</p>
-                      <div class="card-actions">
-                        <button class="btn btn-primary">Buy Now</button>
-                      </div>
-                    </div>
-                  </div> -->
+                
+            </div>
+            <div id="show-all-button-container" class="text-center mt-5 hidden">
+                <button onclick="showAll()" class="btn btn-primary text-white text-xs lg:text-xl">Show All</button>
             </div>
         </section>
     </main>
